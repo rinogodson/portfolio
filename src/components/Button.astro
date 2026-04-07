@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  text: string;
+  icon: string;
+  href: string;
+}
+
+const { text, icon, href } = Astro.props;
+---
+
+<div
+  class="w-fit p-[0.2rem] lg:p-1 bg-linear-to-b to-[#E2E4E8] from-[#CCCCCC] rounded-lg lg-hover:scale-100 hover:scale-105 active:scale-100 active:brightness-110 transition-all duration-200"
+>
+  <a
+    href={href}
+    class="font-[Rubik] px-3 py-1 gap-2 font-medium text-xl lg:text-3xl flex rounded-md justify-center items-center flex-row bg-linear-to-b from-[#E2E4E8] to-[#CCCCCC] text-[#111214] w-fit"
+  >
+    <Icon name={icon} class="h-full aspect-square" />
+    {text}
+  </a>
+</div>
