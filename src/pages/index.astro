@@ -1,13 +1,14 @@
 ---
 import "../styles/global.css";
 import Button from "../components/Button.astro";
+import Skills from "../sections/Skills.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { RubiksCube } from "../lib/motion-core";
 ---
 
 <BaseLayout title="Rino Godson">
   <main
-    class="min-h-dvh w-svw bg-[#111214] text-white flex flex-col px-6 py-12 md:px-12 lg:px-24 font-[Rubik] overflow-hidden"
+    class="min-h-dvh w-svw bg-[#111214] text-white flex flex-col px-6 py-12 pt-6 sm:pt-12 md:px-12 lg:px-24 font-[Rubik] overflow-hidden"
   >
     <div class="grid grid-cols-1 lg:grid-cols-2 w-full flex-1 gap-8 lg:gap-12">
       <div
@@ -42,7 +43,7 @@ import { RubiksCube } from "../lib/motion-core";
       </div>
 
       <div
-        class="order-first lg:order-last w-full h-full flex justify-center items-center saturate-0 mt-8 lg:mt-0"
+        class="order-first lg:order-last w-full h-full flex justify-center items-center saturate-0"
       >
         <div
           class="w-full sm:max-w-sm lg:max-w-none lg:w-full lg:h-full aspect-square flex items-center justify-center"
@@ -53,64 +54,123 @@ import { RubiksCube } from "../lib/motion-core";
     </div>
 
     <div
-      class="fixed bottom-6 right-6 lg:bottom-auto lg:top-24 lg:left-24 md:bottom-10 md:right-10 scale-[0.65] md:scale-100 origin-bottom-right lg:origin-top-left z-50 pointer-events-none"
+      class="absolute bottom-6 right-6 z-50 origin-bottom-right scale-80 md:bottom-10 md:right-10 md:scale-100 lg:bottom-auto lg:left-24 lg:top-24 lg:origin-top-left"
     >
-      <div
-        class="relative w-32 h-32 flex items-center justify-center pointer-events-auto"
+      <!-- From Uiverse.io by Creatlydev -->
+      <button
+        class="group relative grid h-30 w-30 cursor-pointer place-content-center overflow-hidden rounded-full border-none bg-[#e3e4e8] font-semibold text-[#111214] transition-all duration-100 hover:scale-105"
       >
-        <div class="absolute inset-0 animate-spin-slow">
-          <svg viewBox="0 0 100 100" class="w-full h-full">
+        <p
+          class="pointer-events-none absolute inset-0 animate-[spin_8s_linear_infinite]"
+        >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 0; transform: rotate(calc(19deg * var(--index)))"
+            >G</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 1; transform: rotate(calc(19deg * var(--index)))"
+            >O</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 2; transform: rotate(calc(19deg * var(--index)))"
+          >
+          </span>
+          <span
+            class="absolute inset-1.75"
+            style="--index: 3; transform: rotate(calc(19deg * var(--index)))"
+            >T</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 4; transform: rotate(calc(19deg * var(--index)))"
+            >O</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 5; transform: rotate(calc(19deg * var(--index)))"
+          >
+          </span>
+          <span
+            class="absolute inset-1.75"
+            style="--index: 6; transform: rotate(calc(19deg * var(--index)))"
+            >M</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 7; transform: rotate(calc(19deg * var(--index)))"
+            >Y</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 8; transform: rotate(calc(19deg * var(--index)))"
+          >
+          </span>
+          <span
+            class="absolute inset-1.75"
+            style="--index: 9; transform: rotate(calc(19deg * var(--index)))"
+            >C</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 10; transform: rotate(calc(19deg * var(--index)))"
+            >H</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 11; transform: rotate(calc(19deg * var(--index)))"
+            >A</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 12; transform: rotate(calc(19deg * var(--index)))"
+            >N</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 13; transform: rotate(calc(19deg * var(--index)))"
+            >N</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 14; transform: rotate(calc(19deg * var(--index)))"
+            >E</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 15; transform: rotate(calc(19deg * var(--index)))"
+            >L</span
+          >
+          <span
+            class="absolute inset-1.75"
+            style="--index: 16; transform: rotate(calc(19deg * var(--index)))"
+          >
+          </span>
+          <span
+            class="absolute inset-1.75"
+            style="--index: 17; transform: rotate(calc(19deg * var(--index)))"
+            >*</span
+          >
+        </p>
+
+        <div
+          class="relative flex h-12.5 w-12.5 items-center justify-center overflow-hidden rounded-full bg-[#111214] text-[#e3e4e8]"
+        >
+          <svg
+            viewBox="0 0 14 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-3.5 transition-transform duration-100 group-active:scale-100 group-hover:scale-110"
+          >
             <path
-              id="circlePath"
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-              fill="none"></path>
-            <text font-size="11" fill="white" font-weight="bold">
-              <textPath href="#circlePath" letter-spacing="1">
-                GO TO MY CHANNEL • GO TO MY CHANNEL •
-              </textPath>
-            </text>
+              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+              fill="currentColor"></path>
           </svg>
         </div>
-        <div class="bg-white rounded-full p-4 text-black shadow-xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"></path></svg
-          >
-        </div>
-      </div>
+      </button>
     </div>
   </main>
+  <Skills />
 </BaseLayout>
-
-<style>
-  .animate-spin-slow {
-    animation: spin 10s linear infinite;
-  }
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @media (max-width: 640px) {
-    a {
-      width: 100% !important;
-      justify-content: center !important;
-    }
-    .button-container :global(button),
-    .button-container :global(a) {
-      width: 100% !important;
-      justify-content: center !important;
-    }
-  }
-</style>
