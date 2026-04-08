@@ -1,0 +1,14 @@
+---
+import ProjectsStack from "../components/ProjectsStack.tsx";
+import { getCollection } from "astro:content";
+const projectEntries = await getCollection("projects");
+const projectsList = projectEntries[0]?.data.projects ?? [];
+const sortedProjects = projectsList.sort((a, b) => a.id - b.id);
+---
+
+<section
+  id="projects"
+  class="w-full py-12 px-6 md:px-12 lg:px-24 bg-[#111214] text-white font-[Rubik] relative overflow-hidden"
+>
+  <ProjectsStack pro={sortedProjects} client:load />
+</section>
