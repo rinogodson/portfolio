@@ -6,7 +6,7 @@ projects:
     demo: "https://ode-alpha.vercel.app"
     repo: "https://github.com/rinogodson/ode"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: ""
+    image: "https://cdn.britannica.com/65/162465-050-9CDA9BC9/Alps-Switzerland.jpg"
 
   - id: 2
     title: "Ghost Ink"

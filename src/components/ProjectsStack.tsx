@@ -32,20 +32,23 @@ export default function ProjectsStack({
   };
 
   return (
-    <div className="relative w-full max-w-md h-137.5 flex items-center justify-center perspective-[1000px]">
-      {cards.map((card, index) => {
-        const isTop = index === 0;
+    <div className="flex flex-col w-full max-w-md items-center gap-6 font-[Rubik]">
+      <div className="relative w-full max-w-md h-137.5 flex items-center justify-center perspective-[1000px]">
+        {cards.map((card, index) => {
+          const isTop = index === 0;
 
-        return (
-          <Card
-            key={card.id}
-            card={card}
-            index={index}
-            isTop={isTop}
-            onSwipe={() => moveToEnd(index)}
-          />
-        );
-      })}
+          return (
+            <Card
+              key={card.id}
+              card={card}
+              index={index}
+              isTop={isTop}
+              onSwipe={() => moveToEnd(index)}
+            />
+          );
+        })}
+      </div>
+      <p>Swipe sideways!</p>
     </div>
   );
 }
@@ -90,7 +93,7 @@ function Card({
 
   return (
     <motion.div
-      className="absolute w-full h-125"
+      className="absolute w-full h-125 "
       style={{
         zIndex,
         transformOrigin: "center center",
@@ -110,7 +113,7 @@ function Card({
       }}
     >
       <motion.div
-        className="w-full h-full bg-[#111111] rounded-[32px] border border-white/10 flex flex-col overflow-hidden"
+        className="w-full h-full bg-[#111111] rounded-2xl border border-white/10 flex flex-col overflow-hidden"
         style={{
           x,
           rotate: rotateDrag,
@@ -127,18 +130,17 @@ function Card({
         onDragEnd={handleDragEnd}
         whileTap={isTop ? { cursor: "grabbing" } : {}}
       >
-        <div className="relative h-48 w-full bg-neutral-900 shrink-0 select-none">
+        <div className="relative p-2 h-48 w-full shrink-0 select-none">
           <img
             src={card.image}
             alt={card.title}
-            className="w-full h-full object-cover pointer-events-none"
+            className="w-full rounded-xl h-full object-cover pointer-events-none border-2 border-black/50"
             draggable={false}
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-[#111111] to-transparent" />
         </div>
 
-        <div className="p-6 flex flex-col grow select-none">
+        <div className="p-5 flex flex-col grow select-none">
           <h2 className="text-2xl font-display font-bold text-white mb-2 tracking-tight">
             {card.title}
           </h2>
@@ -160,7 +162,11 @@ function Card({
           <div className="flex gap-3 mt-auto">
             <a
               href={card.demo}
-              className="flex-1 flex items-center justify-center gap-2 bg-white text-black py-3 px-4 rounded-xl font-semibold text-sm hover:bg-neutral-200 transition-colors pointer-events-auto"
+              style={{
+                pointerEvents: card.demo ? "auto" : "none",
+                backgroundColor: card.demo ? "#fff" : "#555",
+              }}
+              className="flex-1 flex items-center justify-center gap-2 bg-white text-black py-3 px-4 rounded-xl font-semibold text-xl transition-colors pointer-events-auto"
               onClick={(e) => (isTop ? null : e.preventDefault())}
               draggable={false}
             >
@@ -168,7 +174,7 @@ function Card({
             </a>
             <a
               href={card.repo}
-              className="flex-1 flex items-center justify-center gap-2 bg-neutral-800 text-white py-3 px-4 rounded-xl font-semibold text-sm hover:bg-neutral-700 transition-colors pointer-events-auto border border-white/10"
+              className="flex-1 flex items-center justify-center gap-2 bg-neutral-800 text-white py-3 px-4 rounded-xl font-semibold text-xl hover:bg-neutral-700 transition-colors pointer-events-auto border border-white/10"
               onClick={(e) => (isTop ? null : e.preventDefault())}
               draggable={false}
             >
