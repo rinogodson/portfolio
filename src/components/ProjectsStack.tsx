@@ -7,6 +7,9 @@ import {
   animate,
 } from "motion/react";
 
+import { FaGithub } from "react-icons/fa";
+import { MdToys } from "react-icons/md";
+
 export default function ProjectsStack({
   pro,
 }: {
@@ -32,8 +35,8 @@ export default function ProjectsStack({
   };
 
   return (
-    <div className="flex flex-col w-full max-w-md items-center gap-6 font-[Rubik]">
-      <div className="relative w-full max-w-md h-137.5 flex items-center justify-center perspective-[1000px]">
+    <div className="flex flex-col w-full max-w-lg items-center gap-6 font-[Rubik]">
+      <div className="relative w-full max-w-lg h-150 flex items-center justify-center perspective-[1000px]">
         {cards.map((card, index) => {
           const isTop = index === 0;
 
@@ -48,7 +51,6 @@ export default function ProjectsStack({
           );
         })}
       </div>
-      <p>Swipe sideways!</p>
     </div>
   );
 }
@@ -93,7 +95,7 @@ function Card({
 
   return (
     <motion.div
-      className="absolute w-full h-125 "
+      className="absolute w-full h-140 "
       style={{
         zIndex,
         transformOrigin: "center center",
@@ -113,7 +115,7 @@ function Card({
       }}
     >
       <motion.div
-        className="w-full h-full bg-[#111111] rounded-2xl border border-white/10 flex flex-col overflow-hidden"
+        className="w-full h-full bg-[#111111] rounded-2xl border border-white/10 flex flex-col"
         style={{
           x,
           rotate: rotateDrag,
@@ -141,10 +143,10 @@ function Card({
         </div>
 
         <div className="p-5 flex flex-col grow select-none">
-          <h2 className="text-2xl font-display font-bold text-white mb-2 tracking-tight">
+          <h2 className="text-3xl font-display font-bold text-white mb-2 tracking-tight">
             {card.title}
           </h2>
-          <p className="text-neutral-400 text-sm mb-4 grow leading-relaxed">
+          <p className="text-neutral-400 text-md mb-4 grow leading-relaxed">
             {card.description}
           </p>
 
@@ -170,6 +172,7 @@ function Card({
               onClick={(e) => (isTop ? null : e.preventDefault())}
               draggable={false}
             >
+              <MdToys size={20} />
               Demo
             </a>
             <a
@@ -178,6 +181,7 @@ function Card({
               onClick={(e) => (isTop ? null : e.preventDefault())}
               draggable={false}
             >
+              <FaGithub size={20} />
               Repo
             </a>
           </div>

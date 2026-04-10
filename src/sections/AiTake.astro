@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import aitake from "../assets/aitake.webp";
+---
+
+<section
+  id="projects"
+  class="flex flex-col mt-20 w-full md:flex-row font-[Rubik]"
+>
+  <div
+    class="w-full mx-auto py-12 sm:gap-10 md:py-0 px-6 md:px-12 lg:px-24 bg-[#111214] text-white font-[Rubik] md:grid grid-cols-[1fr_50em] flex flex-col-reverse justify-center items-start relative overflow-hidden"
+  >
+    <div>
+      <h2 class="text-4xl font-medium mb-10 tracking-tight">My Take on AI</h2>
+      <p class="text-lg leading-relaxed mb-8">
+        i'm hands-off with docs. i learn by building - sometimes small,
+        sometimes wild. i like turning ideas into real, working stuff. even if
+        it's half-broken at first, it works... eventually. here are my
+        socials:i'm hands-off with docs. i learn by building - sometimes small,
+        sometimes wild. i like turning ideas into real, working stuff. even if
+        it's half-broken at first, it works... eventually. here are my socials:
+      </p>
+    </div>
+    <div class="w-full flex justify-center items-center mb-10">
+      <Image src={aitake} alt="Story Image" class={"w-full opacity-30"} />
+    </div>
+  </div>
+</section>
