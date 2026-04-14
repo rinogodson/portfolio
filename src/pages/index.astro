@@ -8,6 +8,7 @@ import Github from "../sections/Github.astro";
 import Footer from "../sections/Footer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GradualBlur from "../components/GradualBlur.tsx";
+import SocialsModal from "../components/SocialsModal.astro";
 import { RubiksCube } from "../lib/motion-core";
 import { Icon } from "astro-icon/components";
 ---
@@ -55,9 +56,17 @@ import { Icon } from "astro-icon/components";
           <div
             class="flex flex-col sm:flex-row gap-4 pt-2 w-full button-container"
           >
-            <Button text="Socials" icon="mdi:heart" href="#" />
-            <Button text="Projects" icon="lucide:origami" href="#" />
-            <Button text="Resume" icon="lucide:file-text" href="#" />
+            <div class="relative">
+              <Button
+                text="Socials"
+                icon="mdi:heart"
+                href="#"
+                data-socials-trigger
+              />
+              <SocialsModal />
+            </div>
+            <Button text="Projects" icon="lucide:origami" href="#projects" />
+            <Button text="Resume" icon="lucide:file-text" href="/resume.pdf" />
           </div>
         </div>
       </div>

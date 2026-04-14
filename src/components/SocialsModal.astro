@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+
+const socials = [
+  { name: "GitHub", icon: "mdi:github", href: "https://github.com/rinogodson" },
+  { name: "X", icon: "ri:twitter-x-fill", href: "https://x.com/rinogodson" },
+  { name: "LinkedIn", icon: "mdi:linkedin", href: "https://linkedin.com/in/rinogodson" },
+  { name: "Instagram", icon: "mdi:instagram", href: "https://instagram.com/rinogodson" },
+];
+---
+
+<div id="socials-popover" class="hidden absolute bottom-full left-0 mb-6 z-[110] w-64 bg-[#1e1e20] border border-white/10 rounded-2xl shadow-2xl p-4 transition-all duration-300 scale-90 opacity-0 origin-bottom-left">
+  <div class="grid grid-cols-2 gap-3">
+    {socials.map((social) => (
+      <a href={social.href} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-white/5 transition-all group">
+        <Icon name={social.icon} class="w-10 h-10 group-hover:scale-110 transition-transform text-white/80 group-hover:text-white" />
+        <span class="text-xs font-medium font-[Rubik] text-white/60 group-hover:text-white transition-colors">{social.name}</span>
+      </a>
+    ))}
+  </div>
+  <div class="absolute top-full left-8 -mt-1 border-8 border-transparent border-t-[#1e1e20]"></div>
+</div>
+
+<div id="socials-backdrop" class="hidden fixed inset-0 z-[105] bg-transparent"></div>
+
+<script>
+  const popover = document.getElementById('socials-popover');
+  const backdrop = document.getElementById('socials-backdrop');
+  const trigger = document.querySelector('[data-socials-trigger]');
+
+  function openPopover() {
+    popover?.classList.remove('hidden');
+    backdrop?.classList.remove('hidden');
+    setTimeout(() => {
+      popover?.classList.remove('scale-90', 'opacity-0');
+      popover?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  function closePopover() {
+    popover?.classList.remove('scale-100', 'opacity-100');
+    popover?.classList.add('scale-90', 'opacity-0');
+    setTimeout(() => {
+      popover?.classList.add('hidden');
+      backdrop?.classList.add('hidden');
+    }, 300);
+  }
+
+  trigger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (popover?.classList.contains('hidden')) {
+      openPopover();
+    } else {
+      closePopover();
+    }
+  });
+backdrop?.addEventListener('click', closePopover);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePopover();
+});
+</script>

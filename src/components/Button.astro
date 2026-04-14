@@ -4,13 +4,15 @@ interface Props {
   text: string;
   icon: string;
   href: string;
+  [key: string]: any;
 }
 
-const { text, icon, href } = Astro.props;
+const { text, icon, href, ...rest } = Astro.props;
 ---
 
 <div
   class="w-fit p-[0.2rem] lg:p-1 bg-linear-to-b to-[#E2E4E8] from-[#CCCCCC] rounded-lg lg-hover:scale-100 hover:scale-105 active:scale-100 active:brightness-110 transition-all duration-200"
+  {...rest}
 >
   <a
     href={href}

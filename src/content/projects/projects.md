@@ -6,7 +6,7 @@ projects:
     demo: "https://ode-alpha.vercel.app"
     repo: "https://github.com/rinogodson/ode"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: "https://cdn.britannica.com/65/162465-050-9CDA9BC9/Alps-Switzerland.jpg"
+    image: "/project8.webp"
 
   - id: 2
     title: "Ghost Ink"
@@ -14,7 +14,7 @@ projects:
     demo: "https://ghostinkweb.vercel.app"
     repo: "https://github.com/rinogodson/ghost-ink"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: ""
+    image: "/project7.webp"
 
   - id: 3
     title: "DreamShell"
@@ -22,7 +22,7 @@ projects:
     demo: null
     repo: "https://github.com/rinogodson/DreamShell"
     stack: ["Golang", "Tview"]
-    image: ""
+    image: "/project6.webp"
 
   - id: 4
     title: "Coins are Bullets"
@@ -30,7 +30,7 @@ projects:
     demo: "https://rinogodson.itch.io/coins-are-bullets"
     repo: "https://github.com/rinogodson/coins-are-bullets"
     stack: ["Lua", "Love2D"]
-    image: ""
+    image: "/project5.webp"
 
   - id: 5
     title: "GravKitty"
@@ -38,7 +38,7 @@ projects:
     demo: "https://rinogodson.itch.io/gravkitty"
     repo: "https://github.com/rinogodson/GravKitty"
     stack: ["GDScript", "Godot"]
-    image: ""
+    image: "/project4.webp"
 
   - id: 6
     title: "README Wizard"
@@ -46,7 +46,7 @@ projects:
     demo: "https://readme-wizard-three.vercel.app/"
     repo: "https://github.com/rinogodson/readme-wizard"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: ""
+    image: "/project3.webp"
 
   - id: 7
     title: "Pixecho"
@@ -54,7 +54,7 @@ projects:
     demo: "https://pixecho.vercel.app"
     repo: "https://github.com/rinogodson/pixecho"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: ""
+    image: "/project2.webp"
 
   - id: 8
     title: "Rosterio"
@@ -62,5 +62,5 @@ projects:
     demo: null
     repo: "https://github.com/rinogodson/Rosterio"
     stack: ["Typescript", "ReactJS", "TailwindCSS"]
-    image: ""
+    image: "/project1.webp"
 ---
