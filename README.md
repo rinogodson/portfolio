@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+<img width="1675" height="1018" alt="337ff3356e3ff9bfe4335b02b6171802ad093a621e21793a35387354da58e856" src="https://github.com/user-attachments/assets/8407ef1e-5dc5-434f-a945-441e7fd4ce6a" />
 
-```sh
-bun create astro@latest -- --template minimal
-```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# Rino Godson - Portfolio
 
-## 🚀 Project Structure
+### This is just my Portfolio :)
+Stack: NextJS, TailwindCSS, Motion.dev
 
-Inside of your Astro project, you'll see the following folders and files:
+### I designed this portfolio in Figma a while ago, and I found it very cool. I created this portfolio using NextJS, and it has SSR Support. It's SEO Friendly too... I used motion.dev for animations, Tailwind for styling
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+#### Make sure to interact with all the things i added.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### This README was made using [READMEwizard](https://readme-wizard-three.vercel.app) (it's an app made by me :) [Check it out!](https://github.com/rinogodson/readme-wizard))
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🤝 Contributing  
+Contributions are welcome! Please fork the repository and submit a pull request.  
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Fork the project.  
+2. Create a new branch:  
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. Commit your changes:  
+   ```bash
+   git commit -m "Add some feature"
+   ```
+4. Push the branch:  
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+5. Open a pull request.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📄 License  
+This project is licensed under the [MIT License](LICENSE).
