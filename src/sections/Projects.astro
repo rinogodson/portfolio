@@ -44,6 +44,8 @@ const sortedProjects = projectsList.sort((a, b) => a.id - b.id);
       </span>
     </h2>
 
-    <ProjectsStack pro={sortedProjects} client:load />
+    <span id="projects-stack">
+      <ProjectsStack pro={sortedProjects} client:load />
+    </span>
   </div>
 </section>
