@@ -3,10 +3,10 @@
 
 # Rino Godson - Portfolio
 
-### This is just my Portfolio :)
-Stack: NextJS, TailwindCSS, Motion.dev
+### This is just my Portfolio made in AstroJS :)
+Stack: AstroJS
 
-### I designed this portfolio in Figma a while ago, and I found it very cool. I created this portfolio using NextJS, and it has SSR Support. It's SEO Friendly too... I used motion.dev for animations, Tailwind for styling
+### I designed this portfolio in Figma, and I found it very cool. I created this portfolio using AstroJS with some React and Svelte Islands, and it’s SEO-friendly… I used Tailwind for styling, and some components from uiverse.
 
 #### Make sure to interact with all the things i added.
 
