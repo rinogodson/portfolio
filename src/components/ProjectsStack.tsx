@@ -1,12 +1,4 @@
-import { useState } from "react";
-import {
-  motion,
-  type PanInfo,
-  useMotionValue,
-  useTransform,
-  animate,
-} from "motion/react";
-
+import { useState, useRef, type PointerEvent } from "react";
 import { FaGithub } from "react-icons/fa";
 import { MdToys } from "react-icons/md";
 
@@ -37,19 +29,15 @@ export default function ProjectsStack({
   return (
     <div className="flex flex-col w-full max-w-lg items-center gap-6 font-[Rubik]">
       <div className="relative w-full max-w-lg h-150 flex items-center justify-center perspective-[1000px]">
-        {cards.map((card, index) => {
-          const isTop = index === 0;
-
-          return (
-            <Card
-              key={card.id}
-              card={card}
-              index={index}
-              isTop={isTop}
-              onSwipe={() => moveToEnd(index)}
-            />
-          );
-        })}
+        {cards.map((card, index) => (
+          <Card
+            key={card.id}
+            card={card}
+            index={index}
+            isTop={index === 0}
+            onSwipe={() => moveToEnd(index)}
+          />
+        ))}
       </div>
     </div>
   );
@@ -66,71 +54,102 @@ function Card({
   isTop: boolean;
   onSwipe: () => void;
 }) {
-  const x = useMotionValue(0);
-  const rotateDrag = useTransform(x, [-200, 200], [-10, 10]);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const startX = useRef(0);
+  const currentX = useRef(0);
+  const isDragging = useRef(false);
 
-  const handleDragEnd = (_event: any, info: PanInfo) => {
-    const swipeThreshold = 100;
-    const velocityThreshold = 500;
+  const handlePointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    if (!isTop) return;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    isDragging.current = true;
+    startX.current = e.clientX;
+    currentX.current = 0;
 
-    const isSwipeRight =
-      info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold;
-    const isSwipeLeft =
-      info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold;
-
-    if (isSwipeRight || isSwipeLeft) {
-      onSwipe();
-      animate(x, 0, { type: "spring", stiffness: 300, damping: 25 });
-    } else {
-      animate(x, 0, { type: "spring", stiffness: 300, damping: 25 });
+    if (cardRef.current) {
+      cardRef.current.style.transition = "none";
+      cardRef.current.style.cursor = "grabbing";
     }
   };
 
-  const xOffset = index * 25;
-  const yOffset = index * -5;
-  const scale = 1 - index * 0.04;
-  const opacity = index >= 4 ? 0 : 1;
-  const zIndex = 100 - index;
-  const stackRotate = index * 4;
+  const handlePointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !isTop) return;
+    currentX.current = e.clientX - startX.current;
+    if (cardRef.current) {
+      const rotate = currentX.current * 0.05;
+      cardRef.current.style.transform = `translate3d(${currentX.current}px, 0, 0) rotate(${rotate}deg)`;
+    }
+  };
+
+  const handlePointerUp = (e: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !isTop) return;
+    isDragging.current = false;
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+
+    const el = cardRef.current;
+    if (el) {
+      const swipeThreshold = 100;
+      el.style.transition = "transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
+      el.style.cursor = "grab";
+
+      if (Math.abs(currentX.current) > swipeThreshold) {
+        const direction = currentX.current > 0 ? 1 : -1;
+        const throwX = direction * (window.innerWidth + 500);
+        const throwRotate = direction * 45;
+        el.style.transform = `translate3d(${throwX}px, 0, 0) rotate(${throwRotate}deg)`;
+        setTimeout(() => {
+          onSwipe();
+          if (cardRef.current) cardRef.current.style.transform = "";
+        }, 300);
+      } else {
+        el.style.transform = "translate3d(0, 0, 0) rotate(0deg)";
+        setTimeout(() => {
+          if (cardRef.current && !isDragging.current) {
+            cardRef.current.style.transform = "";
+          }
+        }, 300);
+      }
+    }
+  };
+
+  const handleClickCapture = (e: React.MouseEvent) => {
+    if (Math.abs(currentX.current) > 5) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
 
   return (
-    <motion.div
-      className="absolute w-full h-140 "
+    <div
+      className="absolute w-full h-140"
       style={{
-        zIndex,
-        transformOrigin: "center center",
+        zIndex: 100 - index,
         pointerEvents: isTop ? "auto" : "none",
-      }}
-      animate={{
-        x: xOffset,
-        y: yOffset,
-        scale: scale,
-        opacity: opacity,
-        rotate: stackRotate,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 25,
+        transform: `translate3d(${index * 25}px, ${index * -5}px, 0) scale(${1 - index * 0.04}) rotate(${index * 4}deg)`,
+        opacity: index >= 4 ? 0 : 1,
+        transformOrigin: "center center",
+        transition:
+          "transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease",
       }}
     >
-      <motion.div
+      <div
+        ref={cardRef}
+        onClickCapture={handleClickCapture}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
         className="w-full h-full bg-[#111111] rounded-2xl border border-white/10 flex flex-col"
         style={{
-          x,
-          rotate: rotateDrag,
           cursor: isTop ? "grab" : "auto",
           boxShadow: isTop
             ? "0 25px 50px -12px rgba(0, 0, 0, 0.8)"
             : "-10px 10px 30px -10px rgba(0, 0, 0, 0.6)",
           backfaceVisibility: "hidden",
           WebkitFontSmoothing: "antialiased",
+          touchAction: isTop ? "none" : "auto",
+          willChange: isTop ? "transform" : "auto",
         }}
-        drag={isTop ? "x" : false}
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.8}
-        onDragEnd={handleDragEnd}
-        whileTap={isTop ? { cursor: "grabbing" } : {}}
       >
         <div className="relative p-2 h-48 w-full shrink-0 select-none">
           <img
@@ -138,7 +157,6 @@ function Card({
             alt={card.title}
             className="w-full rounded-xl h-full object-cover pointer-events-none border-2 border-black/50"
             draggable={false}
-            referrerPolicy="no-referrer"
           />
         </div>
 
@@ -150,7 +168,7 @@ function Card({
             {card.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6 pointer-events-none">
             {card.stack.map((t: string) => (
               <span
                 key={t}
@@ -163,14 +181,13 @@ function Card({
 
           <div className="flex gap-3 mt-auto">
             <a
-              href={card.demo}
+              href={card.demo || "#"}
               style={{
                 pointerEvents: card.demo ? "auto" : "none",
                 backgroundColor: card.demo ? "#fff" : "#555",
               }}
               className="flex-1 flex items-center justify-center gap-2 bg-white text-black py-3 px-4 rounded-xl font-semibold text-xl transition-colors pointer-events-auto"
               onClick={(e) => (isTop ? null : e.preventDefault())}
-              draggable={false}
             >
               <MdToys size={20} />
               Demo
@@ -179,14 +196,13 @@ function Card({
               href={card.repo}
               className="flex-1 flex items-center justify-center gap-2 bg-neutral-800 text-white py-3 px-4 rounded-xl font-semibold text-xl hover:bg-neutral-700 transition-colors pointer-events-auto border border-white/10"
               onClick={(e) => (isTop ? null : e.preventDefault())}
-              draggable={false}
             >
               <FaGithub size={20} />
               Repo
             </a>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

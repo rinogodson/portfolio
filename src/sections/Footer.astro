@@ -1,0 +1,16 @@
+---
+import GalleryWrapper from "../components/GalleryWrapper.svelte";
+import Button from "../components/Button.astro";
+---
+
+<section
+  class="text-white bg-black rounded-t-4xl pt-20 h-fit font-sans mt-50 flex flex-col justify-end items-center"
+>
+  <h2
+    class="text-2xl sm:text-4xl font-medium font-[Rubik] sm:mb-16 mb-8 tracking-tight text-center"
+  >
+    That’s me, Building things I like
+  </h2>
+  <Button text="Connect" href="" icon="material-symbols:handshake" />
+  <GalleryWrapper client:only="svelte" />
+</section>
